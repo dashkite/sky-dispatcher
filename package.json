@@ -1,7 +1,7 @@
 {
-  "name": "@dashkite/graphite",
+  "name": "@dashkite/sky-dispatcher",
   "version": "0.0.0",
-  "description": "Graph Database For DynamoDB",
+  "description": "Dispatcher for Sky APIs",
   "exports": {
     ".": {
       "node": "./build/node/src/index.js"
@@ -35,9 +35,13 @@
   },
   "homepage": "https://github.com/dashkite/dolores#readme",
   "devDependencies": {
+    "@dashkite/amen": "^0.1.2",
+    "@dashkite/amen-console": "^0.0.1",
+    "@dashkite/assert": "^0.1.4",
     "@dashkite/genie": "^0.5.4",
     "@dashkite/genie-presets": "^0.5.2"
   },
   "dependencies": {
+    "@dashkite/sky-classifier": "file:../sky-classifier"
   }
 }
