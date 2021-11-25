@@ -1,6 +1,12 @@
 import classifier from "@dashkite/sky-classifier"
+import * as Text from "@dashkite/joy/text"
+import resolveStatus from "statuses"
 
 getStatusFromDescription = (description) ->
+  resolveStatus description
+
+getDescriptionFromStatus = (status) ->
+  resolveStatus status
 
 dispatcher = (description, handlers) ->
 
@@ -14,11 +20,18 @@ dispatcher = (description, handlers) ->
 
     if ( handler = handlers[ resource ]?[ method] )?
       response = await handler request
-      if response.description?
-        response.status = getStatusFromDescription response.description
+    else
+      response = description: "not found"
 
-      # TODO deal with content-encoding
+    if response.description? && !response.status?
+      response.status = getStatusFromDescription response.description
+      # normalize description, now that we have the status
+      response.description = getDescriptionFromStatus response.status
+    else if response.status? && !response.description?
+      response.description = getDescriptionFromStatus response.status
 
-      response      
+    # TODO deal with content-encoding
+    console.log { response }
+    response      
 
 export default dispatcher

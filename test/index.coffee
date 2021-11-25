@@ -28,7 +28,7 @@ do ->
 
       assert.equal "success!", 
         await dispatch
-          url: "/foo"
+          target: "/foo"
           method: "post"
           headers: {}
 
