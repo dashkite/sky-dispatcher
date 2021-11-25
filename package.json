@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dashkite/graphite.git"
+    "url": "git+https://github.com/dashkite/sky-dispatcher.git"
   },
   "keywords": [],
   "contributors": [
@@ -31,9 +31,9 @@
   ],
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/dashkite/dolores/issues"
+    "url": "https://github.com/dashkite/sky-dispatcher/issues"
   },
-  "homepage": "https://github.com/dashkite/dolores#readme",
+  "homepage": "https://github.com/dashkite/sky-dispatcher#readme",
   "devDependencies": {
     "@dashkite/amen": "^0.1.2",
     "@dashkite/amen-console": "^0.0.1",
