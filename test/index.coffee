@@ -21,7 +21,7 @@ handlers =
 
 do ->
 
-  print await test "Sky Classifier", [
+  print await test "Sky Dispatcher", [
 
     test "create a classifier from a description", ->
       dispatch = $ api, handlers
