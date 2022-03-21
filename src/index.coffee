@@ -9,14 +9,23 @@ dispatcher = (description, handlers) ->
 
     console.log "start dispatcher"
 
-    { resource, method, bindings } = classify request
+    { resource, method, bindings, signatures } = classify request
 
     # TODO handle special case for OPTIONS and HEAD methods
 
-    if ( handler = handlers[ resource ]?[ method] )?
+    if ( handler = handlers[ resource ]?[ method ] )?
       response = await handler request, bindings
+      
+      if signatures.response.status?[0] != 204
+        response.headers ?= {}
+        response.headers["content-type"] = [
+          signatures.response["content-type"] ? "application/json"
+        ]
+    
     else
       response = description: "not found"
+      response.headers ?= {}
+      response.headers["content-type"] = [ "text/plain" ]
 
     # TODO deal with content-encoding
     console.log { response }

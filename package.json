@@ -43,6 +43,6 @@
   },
   "dependencies": {
     "@dashkite/joy": "^0.3.16",
-    "@dashkite/sky-classifier": "^0.0.2"
+    "@dashkite/sky-classifier": "file:../sky-classifier"
   }
 }
