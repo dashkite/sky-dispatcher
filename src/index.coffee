@@ -9,17 +9,17 @@ dispatcher = (description, handlers) ->
 
     console.log "start dispatcher"
 
-    { resource, method, bindings, signatures } = classify request
+    { resource, method, bindings, signatures, json } = classify request
 
     # TODO handle special case for OPTIONS and HEAD methods
 
     if ( handler = handlers[ resource ]?[ method ] )?
-      response = await handler request, bindings
+      response = await handler request, { bindings, json }
       
       if signatures.response.status?[0] != 204
         response.headers ?= {}
         response.headers["content-type"] = [
-          signatures.response["content-type"] ? "application/json"
+          signatures.response["content-type"][0] ? "application/json"
         ]
     
     else
