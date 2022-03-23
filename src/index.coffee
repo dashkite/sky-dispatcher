@@ -1,4 +1,5 @@
 import classifier from "@dashkite/sky-classifier"
+import resolveStatus from "statuses"
 import * as Text from "@dashkite/joy/text"
 
 dispatcher = (description, handlers) ->
@@ -15,17 +16,19 @@ dispatcher = (description, handlers) ->
 
     if ( handler = handlers[ resource ]?[ method ] )?
       response = await handler request, { bindings, json }
-      
-      if signatures.response.status?[0] != 204
-        response.headers ?= {}
-        response.headers["content-type"] = [
-          signatures.response["content-type"][0] ? "application/json"
-        ]
-    
     else
       response = description: "not found"
-      response.headers ?= {}
-      response.headers["content-type"] = [ "text/plain" ]
+
+    status = resolveStatus response.description
+    response.headers ?= {}
+    if status == 204
+      # no content, no content-type
+    else if status < 300
+      response.headers["content-type"] ?= [
+        signatures.response["content-type"]?[0] ? "application/json"
+      ]
+    else
+      response.headers["content-type"] ?= [ "text/plain" ]
 
     # TODO deal with content-encoding
     console.log { response }
