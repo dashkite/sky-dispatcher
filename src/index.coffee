@@ -9,6 +9,9 @@ dispatcher = (description, handlers) ->
   (request) ->
 
     console.log "start dispatcher"
+    _method = request.method
+    if request.method == "head"
+      request.method = "get"
 
     { resource, method, bindings, signatures, json } = classify request
 
@@ -30,7 +33,14 @@ dispatcher = (description, handlers) ->
     else
       response.headers["content-type"] ?= [ "text/plain" ]
 
-    # TODO deal with content-encoding
+    # Empty response for HEAD request.
+    if _method == "head"
+      delete response.content
+
+    # TODO: deal with content-encoding
+    # TODO: deal with content-length
+    # TODO: deal with cache-control
+    # TODO: deal with content compression
     console.log { response }
     response      
 
