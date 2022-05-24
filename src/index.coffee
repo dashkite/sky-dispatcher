@@ -4,8 +4,6 @@ import * as Text from "@dashkite/joy/text"
 
 dispatcher = (description, handlers) ->
 
-  classify = classifier description
-
   (request) ->
 
     console.log "start dispatcher"
@@ -13,12 +11,16 @@ dispatcher = (description, handlers) ->
     if request.method == "head"
       request.method = "get"
 
-    { resource, method, bindings, signatures, json } = classify request
+    { resource, method } = request
+    { origin, name, bindings } = resource
+    { signatures } = description
+      .resources[ name ]
+      .methods[ method ]
 
     # TODO handle special case for OPTIONS and HEAD methods
 
-    if ( handler = handlers[ resource ]?[ method ] )?
-      response = await handler request, { bindings, json }
+    if ( handler = handlers[ name ]?[ method ] )?
+      response = await handler request, bindings
     else
       response = description: "not found"
 
