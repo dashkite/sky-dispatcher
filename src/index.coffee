@@ -6,7 +6,6 @@ dispatcher = (description, handlers) ->
 
   (request) ->
 
-    console.log "start dispatcher"
     _method = request.method
     if request.method == "head"
       request.method = "get"
@@ -28,6 +27,9 @@ dispatcher = (description, handlers) ->
     response.headers ?= {}
     if status == 204
       # no content, no content-type
+      delete response.content
+      delete response.headers["content-type"]
+      delete response.headers["content-length"]
     else if status < 300
       response.headers["content-type"] ?= [
         signatures.response["content-type"]?[0] ? "application/json"
@@ -43,7 +45,6 @@ dispatcher = (description, handlers) ->
     # TODO: deal with content-length
     # TODO: deal with cache-control
     # TODO: deal with content compression
-    console.log { response }
     response      
 
 export default dispatcher
