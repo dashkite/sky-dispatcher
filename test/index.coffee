@@ -17,7 +17,9 @@ api =
 
 handlers =
   foo:
-    post: -> "success!"
+    post: -> 
+      description: "ok"
+      content: "success!"
 
 do ->
 
@@ -26,12 +28,16 @@ do ->
     test "create a classifier from a description", ->
       dispatch = $ api, handlers
 
-      assert.equal "success!", 
-        await dispatch
-          target: "/foo"
-          method: "post"
-          headers: {}
+      response = await dispatch
+        target: "/foo"
+        method: "post"
+        resource:
+          name: "foo"
+        headers: {}
 
+
+      assert.equal "success!", response.content
+        
   ]
 
   process.exit success

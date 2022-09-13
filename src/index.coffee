@@ -1,4 +1,3 @@
-import classifier from "@dashkite/sky-classifier"
 import resolveStatus from "statuses"
 import * as Text from "@dashkite/joy/text"
 
