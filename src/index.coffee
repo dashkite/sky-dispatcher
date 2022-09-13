@@ -1,6 +1,7 @@
 import resolveStatus from "statuses"
 import * as Text from "@dashkite/joy/text"
 
+# TODO do we need the description any longer?
 dispatcher = (description, handlers) ->
 
   (request) ->
