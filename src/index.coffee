@@ -1,50 +1,54 @@
-import resolveStatus from "statuses"
-import * as Text from "@dashkite/joy/text"
+import { decodeURLTarget } from "@dashkite/sky-api-description"
+import {
+  resolveStatus
+  removeContent
+  getSignatures
+  negotiateContent
+  setContentLength
+  setNoContent
+  setAllow
+  invoke
+  respond
+} from "./helpers"
 
 # TODO do we need the description any longer?
 dispatcher = (description, handlers) ->
 
   (request) ->
 
-    _method = request.method
-    if request.method == "head"
-      request.method = "get"
+    # this may have already been decoded for us,
+    # but just in case...
+    request.resource ?= decodeURLTarget description, request.target
 
-    { resource, method } = request
-    { origin, name, bindings } = resource
-    { signatures } = description
-      .resources[ name ]
-      .methods[ method ]
+    if ( methods = handlers[ request.resource?.name ] )?
 
-    # TODO handle special case for OPTIONS and HEAD methods
+      { resource, method } = request
+      { name, bindings } = resource
 
-    if ( handler = handlers[ name ]?[ method ] )?
-      response = await handler request, bindings
+      switch method
+
+        when "head"
+          if ( handler = handlers[ name ]?.get )?
+            setNoContent await invoke handler, request, bindings
+          else
+            respond "not found"
+
+        # TODO should we assume that the distribution will handle this?
+        # there are a lot more possible responses
+        # than we're accounting for here
+        when "options"
+          setAllow ( respond "ok" ), [ "options", ( Object.keys methods )... ]
+
+        else
+          # TODO detect mismatch between description and handlers
+          # for the case where there's a missing or superfluous handler
+          if ( handler = methods?[ method ] )?
+            signatures = getSignatures { description, name, method }
+            negotiateContent signatures,
+              await invoke handler, request, bindings
+          else
+            respond "method not allowed"
     else
-      response = description: "not found"
-
-    status = resolveStatus response.description
-    response.headers ?= {}
-    if status == 204
-      # no content, no content-type
-      delete response.content
-      delete response.headers["content-type"]
-      delete response.headers["content-length"]
-    else if status < 300
-      response.headers["content-type"] ?= [
-        signatures.response["content-type"]?[0] ? "application/json"
-      ]
-    else
-      response.headers["content-type"] ?= [ "text/plain" ]
-
-    # Empty response for HEAD request.
-    if _method == "head"
-      delete response.content
-
-    # TODO: deal with content-encoding
-    # TODO: deal with content-length
-    # TODO: deal with cache-control
-    # TODO: deal with content compression
-    response      
+      respond "not found"
 
 export default dispatcher
