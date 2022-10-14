@@ -1,3 +1,12 @@
+- name: description
+  request:
+    target: /
+    method: get
+  response:
+    status: 200
+    content:
+      type: application/json
+      
 - name: simple request
   request:
     target: /foo

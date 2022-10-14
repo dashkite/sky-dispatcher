@@ -3,6 +3,9 @@ import * as Type from "@dashkite/joy/type"
 import * as Text from "@dashkite/joy/text"
 import status from "statuses"
 
+decorate = ( description, handlers ) ->
+  { description, handlers }
+
 getSignatures = ({ description, name, method }) ->
   { signatures } = description
     .resources[ name ]

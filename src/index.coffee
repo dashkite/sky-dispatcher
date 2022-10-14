@@ -1,5 +1,7 @@
+import merge from "merge-deep"
 import { decodeURLTarget } from "@dashkite/sky-api-description"
 import {
+  decorate
   resolveStatus
   removeContent
   getSignatures
@@ -11,8 +13,15 @@ import {
   respond
 } from "./helpers"
 
-# TODO do we need the description any longer?
-dispatcher = (description, handlers) ->
+import * as Sky from "./sky"
+
+dispatcher = ( description, handlers ) ->
+
+  # add built-in resouce handlers
+  handlers = merge ( Sky.buildHandlers { description }), handlers
+  description = merge Sky.API, description
+
+  # console.log Obj.merge Sky.API, description
 
   (request) ->
 
