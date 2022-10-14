@@ -2,15 +2,10 @@ import * as Fn from "@dashkite/joy/function"
 import * as Type from "@dashkite/joy/type"
 import * as Text from "@dashkite/joy/text"
 import status from "statuses"
+import { getSignatures } from "@dashkite/sky-api-description"
 
 decorate = ( description, handlers ) ->
   { description, handlers }
-
-getSignatures = ({ description, name, method }) ->
-  { signatures } = description
-    .resources[ name ]
-    .methods[ method ]
-  signatures
 
 resolveStatus = Fn.tee ( response ) ->
   if response.status?
