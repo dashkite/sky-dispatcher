@@ -1,4 +1,4 @@
-buildHandlers = ({ description }) ->
+makeBuiltInHandlers = ({ description }) ->
 
   description:
     get: ( request ) ->
@@ -6,4 +6,4 @@ buildHandlers = ({ description }) ->
       description: "ok"
       content: description
 
-export { buildHandlers }
+export { makeBuiltInHandlers }
