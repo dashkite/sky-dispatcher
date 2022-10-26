@@ -1,32 +1,8 @@
-- name: description
-  request:
-    resource:
-      name: description
-    method: get
-  response:
-    description: ok
-      
 - name: simple request
   request:
     resource:
       name: foo
-    method: post
-  response:
-    description: ok
-    content: success!
-
-- name: not found
-  request:
-    resource:
-      name: foobar
-    method: post
-  response:
-    description: not found
-
-- name: method not allowed
-  request:
-    resource:
-      name: foo
     method: get
   response:
-    description: method not allowed
+    description: ok
+    content: hello, world!

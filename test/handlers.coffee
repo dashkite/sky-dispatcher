@@ -1,11 +1,7 @@
 handlers =
   foo:
-    post: -> 
+    get: -> 
       description: "ok"
-      content: "success!"
-    delete: ->
-  bar:
-    get: ->
-      content: greeting: "hello, world!"
+      content: "hello, world!"
 
 export default handlers
