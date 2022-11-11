@@ -1,3 +1,11 @@
+- name: description
+  request:
+    resource:
+      name: description
+    method: get
+  response:
+    description: ok
+
 - name: simple request
   request:
     resource:
