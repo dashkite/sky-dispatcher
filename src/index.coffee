@@ -1,7 +1,7 @@
 dispatcher = ({ description, handlers }) ->
 
   (request) ->
-    if request.resource.name == "description" && request.method == "get"
+    if request.resource?.name == "description" && request.method == "get"
       description: "ok"
       content: description
     else if ( handler = handlers[ request.resource?.name ]?[ request.method ] )?
