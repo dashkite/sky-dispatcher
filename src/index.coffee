@@ -1,18 +1,18 @@
-import description from "./description"
-
-isDiscoveryRequest = ( request ) ->
-  ( request.resource?.name == "description" ) && ( request.method == "get" )
-
-decorate = ( api ) ->
-  api.resources.description = description
+import _description from "./description"
 
 dispatcher = ({ description, handlers }) ->
 
-  (request) ->
-    if isDiscoveryRequest request
+  # decorate the description with the description resource itself
+  description.resources.description = _description
+  
+  # add the get description handler
+  handlers.description =
+    get: ->
       description: "ok"
-      content: decorate description
-    else if ( handler = handlers[ request.resource?.name ]?[ request.method ] )?
+      content: description
+
+  (request) ->
+    if ( handler = handlers[ request.resource?.name ]?[ request.method ] )?
       # await here to force this to be an async fn so that AWS Lambda
       # doesn't require a callback for non-promise responses
       await handler request, request.resource.bindings
