@@ -15,7 +15,11 @@ dispatcher = ({ description, handlers }) ->
     if ( handler = handlers[ request.resource?.name ]?[ request.method ] )?
       # await here to force this to be an async fn so that AWS Lambda
       # doesn't require a callback for non-promise responses
-      await handler request, request.resource.bindings
+      try
+        await handler request, request.resource.bindings
+      catch error
+        console.log "sky-dispatcher: handler error", error
+        description: "internal server error"
     else
       # this should never happen because the classifier should have
       # caught this before ever calling us...
