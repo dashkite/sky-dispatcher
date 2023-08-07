@@ -12,6 +12,7 @@ dispatcher = ({ description, handlers }) ->
       content: description
 
   (request) ->
+    console.log { request }
     if ( handler = handlers[ request.resource?.name ]?[ request.method ] )?
       # await here to force this to be an async fn so that AWS Lambda
       # doesn't require a callback for non-promise responses
