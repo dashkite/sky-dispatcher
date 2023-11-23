@@ -42,5 +42,8 @@
     "@dashkite/genie": "link:../genie",
     "@dashkite/genie-coffee": "link:../genie-coffee",
     "@dashkite/genie-yaml": "link:../genie-yaml"
+  },
+  "dependencies": {
+    "@dashkite/sky-api-description": "link:../sky-api-description"
   }
 }

@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@dashkite/sky-api-description':
+    specifier: link:../sky-api-description
+    version: link:../sky-api-description
+
 devDependencies:
   '@dashkite/amen':
     specifier: ^0.2.0
