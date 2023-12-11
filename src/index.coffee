@@ -1,3 +1,4 @@
+import log from "@dashkite/kaiko"
 import * as API from "@dashkite/sky-api-description"
 import _description from "./description"
 
@@ -6,7 +7,7 @@ dispatcher = ({ description, handlers }) ->
   # decorate the description with the description resource itself
   description.resources.description = _description
   api = API.Description.from description
-  console.log { api }
+  log.debug { api }
   
   # add the get description handler
   handlers.description =
@@ -14,7 +15,9 @@ dispatcher = ({ description, handlers }) ->
       description: "ok"
       content: description
 
-  (request) ->
+  ( request ) ->
+
+    log.debug dispatcher: request
 
     request.resource ?= api.decode request
 
@@ -28,6 +31,7 @@ dispatcher = ({ description, handlers }) ->
         console.info error
         description: "internal server error"
     else
+      log.debug dispatcher: "missing handler"
       description: "not found"
 
 export default dispatcher

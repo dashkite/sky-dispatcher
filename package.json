@@ -44,6 +44,7 @@
     "@dashkite/genie-yaml": "link:../genie-yaml"
   },
   "dependencies": {
+    "@dashkite/kaiko": "^0.3.1",
     "@dashkite/sky-api-description": "link:../sky-api-description"
   }
 }
