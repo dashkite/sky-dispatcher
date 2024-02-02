@@ -8,7 +8,7 @@ dependencies:
   '@dashkite/kaiko':
     specifier: link:../kaiko
     version: link:../kaiko
-  '@dashkite/sky-api-description':
+  '@dashkite/scout':
     specifier: link:../sky-api-description
     version: link:../sky-api-description
 

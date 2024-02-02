@@ -1,5 +1,5 @@
 import log from "@dashkite/kaiko"
-import * as API from "@dashkite/sky-api-description"
+import * as API from "@dashkite/scout"
 import _description from "./description"
 
 dispatcher = ({ description, handlers }) ->

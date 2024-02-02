@@ -45,6 +45,6 @@
   },
   "dependencies": {
     "@dashkite/kaiko": "link:../kaiko",
-    "@dashkite/sky-api-description": "link:../sky-api-description"
+    "@dashkite/scout": "link:../sky-api-description"
   }
 }
