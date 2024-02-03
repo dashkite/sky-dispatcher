@@ -6,7 +6,7 @@ dispatcher = ({ description, handlers }) ->
 
   # decorate the description with the description resource itself
   description.resources.description = _description
-  api = API.Description.from description
+  api = description
   log.debug { api }
   
   # add the get description handler
@@ -19,7 +19,7 @@ dispatcher = ({ description, handlers }) ->
 
     log.debug dispatcher: request
 
-    request.resource ?= api.decode request
+    request.resource ?= API.decode request, api
 
     if ( handler = handlers[ request.resource?.name ]?[ request.method ] )?
       # await here to force this to be an async fn so that AWS Lambda
