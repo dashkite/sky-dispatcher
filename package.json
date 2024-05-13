@@ -45,7 +45,7 @@
     "@dashkite/genie-yaml": "link:../genie-yaml"
   },
   "dependencies": {
-    "@dashkite/kaiko": "link:../kaiko",
+    "@dashkite/kaiko": "^0.3.3",
     "@dashkite/scout": "link:../scout"
   }
 }
