@@ -12,8 +12,8 @@ importers:
         specifier: ^0.3.3
         version: 0.3.3
       '@dashkite/scout':
-        specifier: link:../scout
-        version: link:../scout
+        specifier: 0.2.0
+        version: 0.2.0
     devDependencies:
       '@dashkite/amen':
         specifier: ^0.2.0
@@ -618,6 +618,9 @@ packages:
   '@dashkite/joy@0.3.16':
     resolution: {integrity: sha512-dsU0us4j1Pb+zceoBvLbnZ2PbmULkJUtM2vtWLxKmoc1DE4w9SVTiPTe6JWvF0A0vk90ldv+Lc9qEA5x3O+DtQ==}
 
+  '@dashkite/joy@0.5.0':
+    resolution: {integrity: sha512-kaDNKKS6v5r3vukOkh54aarrhiTHwbcKZZW8eDav5FhT6u8RRrmSaFeAbwLzGntdPScaEhqg/PLrvtPHOy9OlQ==}
+
   '@dashkite/kaiko@0.3.3':
     resolution: {integrity: sha512-XnAvVr9y2MsDqMLr4A24vkLF7Iuq3E8RjHEEpqhe29P5NevVX9jXKcXUStNMp9MSJbjHd2pqUNiM5Vvdja9ggg==}
 
@@ -644,6 +647,15 @@ packages:
 
   '@dashkite/masonry@0.14.0':
     resolution: {integrity: sha512-5POHf/fpqgFba4Xbrr8oNHIpkKTD1WgFTZMjBZBvluv8YBWzLayAd9l4R0TYy+MybBVFFJ2Tj7v5DlIu6dPgvw==}
+
+  '@dashkite/parse@0.4.3':
+    resolution: {integrity: sha512-bE0kBjaGYjUnCzWJelQnx8vsfJ9YP07aRTVFZoY7TZWvMmnihoCSugL4IVWAOA2O0EAZXjT8FcjA4bNJ/BQwwg==}
+
+  '@dashkite/scout@0.2.0':
+    resolution: {integrity: sha512-7L1YLjr/alcq1lvPTll+7Sc0Ek4H5gBIyUWpuGuIWqRDvHECgBrOhUDfFizjIFRAGFRVItdlpLHz6BOFKGC0KQ==}
+
+  '@dashkite/url-codex@0.2.0':
+    resolution: {integrity: sha512-12m6YzdBEP3Rb0QGTMv1cTw4KLO37VW3HDHuUQV7QJQOGRzvS5+iQqXLkhfDJBqRC4oc1t9+iQ/6PEUtYXXArw==}
 
   '@dashkite/zephyr@0.2.0':
     resolution: {integrity: sha512-l3Fm9nyOIp1yBnv4IzGOKVgo1/UucU5WLvsqAfcP2jEVlE4AgpPkODssyloxTyC3N+bhcz1DXqC/7KokI1eVjA==}
@@ -2169,6 +2181,8 @@ snapshots:
 
   '@dashkite/joy@0.3.16': {}
 
+  '@dashkite/joy@0.5.0': {}
+
   '@dashkite/kaiko@0.3.3': {}
 
   '@dashkite/masonry-coffee@0.2.0':
@@ -2221,6 +2235,20 @@ snapshots:
       fast-glob: 3.3.3
     transitivePeerDependencies:
       - supports-color
+
+  '@dashkite/parse@0.4.3':
+    dependencies:
+      '@dashkite/joy': 0.3.16
+
+  '@dashkite/scout@0.2.0':
+    dependencies:
+      '@dashkite/joy': 0.3.16
+      '@dashkite/url-codex': 0.2.0
+
+  '@dashkite/url-codex@0.2.0':
+    dependencies:
+      '@dashkite/joy': 0.5.0
+      '@dashkite/parse': 0.4.3
 
   '@dashkite/zephyr@0.2.0':
     dependencies:

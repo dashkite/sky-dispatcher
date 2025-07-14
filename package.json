@@ -48,6 +48,6 @@
   },
   "dependencies": {
     "@dashkite/kaiko": "^0.3.3",
-    "@dashkite/scout": "link:../scout"
+    "@dashkite/scout": "0.2.0"
   }
 }
