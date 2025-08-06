@@ -1,6 +1,6 @@
 {
   "name": "@dashkite/sky-dispatcher",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "description": "Dispatcher for Sky APIs",
   "exports": {
     ".": {
